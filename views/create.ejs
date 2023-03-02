@@ -2,15 +2,15 @@
 <html lang="en">
     <%- include('./partials/head.ejs') %>
     <body>
-      <%- include('./partials/nav.ejs') %>
-        <div class="create-blog content">
-            <form>
-                <label for="title"> Blog title:</label>
-                <input type="text" id="title" required="required" />
-                <label for="snippet">Blog Snippet:</label>
-                <input type="text" id="snippet" required />
-                <label for="body">Blog Body:</label>
-                <textarea required id="body"></textarea>
+        <%- include('./partials/nav.ejs') %>
+        <div class="create-blogs content">
+            <form action="/blogs" method="post">
+                <lable for="title">Blog Title:</lable>
+                <input type="text" name="title" required id="title" />
+                <lable for="snippet">Blog snippet:</lable>
+                <input type="text" name="snippet" id="snippet" required />
+                <lable for="body">Blog Body:</lable>
+                <textarea name="body" id="body" required></textarea>
                 <button>Submit</button>
             </form>
         </div>

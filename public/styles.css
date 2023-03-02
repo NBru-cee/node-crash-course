@@ -74,21 +74,22 @@
 
         /* details styles */
 
+
         /*create styles */
-        .create-blog form {
+        .create-blogs form{
             max-width: 400px;
             margin: 0 auto;
         }
 
-        .create-blog input,
-        .create-blog textarea {
+        .create-blogs input,
+        .create-blogs textarea {
             display: block;
             width: 100%;
             margin: 10px 0;
             padding: 8px;
         }
 
-        .create-blog label {
+        .create-blogss label {
             display: block;
             margin-top: 24px;
         }
@@ -98,7 +99,7 @@
             resize: none;
         }
 
-        .create-blog button {
+        .create-blogs button {
             margin-top: 20px;
             background-color: crimson;
             color: white;
@@ -110,6 +111,6 @@
             width: 105%;
         }
 
-        .create-blog button:hover {
+        .create-blogs button:hover {
             opacity: 0.8;
         }
