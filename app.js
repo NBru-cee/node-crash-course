@@ -1,5 +1,4 @@
 const express = require("express");
-
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const blogRoutes = require("./routes/blogRoutes");
@@ -32,10 +31,15 @@ app.get("/", (req, res) => {
 });
 
 //blog routes
-app.use('/blogs',blogRoutes);
+app.use("/blogs", blogRoutes);
 
+//custom routes
 app.get("/about", (req, res) => {
     res.render("about", { title: "About" });
+});
+
+app.get("/create", (req, res) => {
+    res.render("create", { title: "Create a new blog" });
 });
 
 app.use((req, res) => {
