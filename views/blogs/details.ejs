@@ -1,0 +1,30 @@
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+    <body>
+        <%- include('../partials/nav.ejs') %>
+        <div class="details content">
+            <h2><%- blog.title %></h2>
+            <div class="content">
+                <p><%- blog.body %></p>
+            </div>
+            <a class="delete" data-doc="<%- blog._id %>">
+                <img src="/trashCan.svg" alt="delete blog" />
+            </a>
+        </div>
+        <%- include("../partials/footer.ejs") %>
+        <script>
+            const transhCan = document.querySelector("a.delete");
+            transhCan.addEventListener("click", (e) => {
+                const endPoint = `/blogs/${transhCan.dataSet.doc}`;
+                fetch(endPoint, {
+                    method: "DELETE",
+                })
+                    .then((response) => {
+                        response.json();
+                    })
+                    .then((data) => console.log(data))
+                    .catch((err) => console.log(err));
+            });
+        </script>
+    </body>
+</html>

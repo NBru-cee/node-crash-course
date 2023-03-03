@@ -1,8 +1,10 @@
 const express = require("express");
-const app = express();
+
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const Blog = require("./models/blog");
+const blogRoutes = require("./routes/blogRoutes");
+//express app
+const app = express();
 
 //connect to mongodb
 const dbURI =
@@ -29,31 +31,11 @@ app.get("/", (req, res) => {
     res.redirect("/blogs");
 });
 
-//dynamic routes
-app.get("/blogs", (req, res) => {
-    Blog.find()
-        .sort({ createdAt: -1 })
-        .then((result) => {
-            res.render("index", { title: "All Blogs", blogs: result });
-        })
-        .catch((err) => console.log(err));
-});
-
-app.post("/blogs", (req, res) => {
-    const blog = new Blog(req.body);
-    blog.save()
-        .then((result) => res.redirect("/blogs"))
-        .catch((err) => console.log(err));
-});
-
-
+//blog routes
+app.use('/blogs',blogRoutes);
 
 app.get("/about", (req, res) => {
     res.render("about", { title: "About" });
-});
-
-app.get("/create", (req, res) => {
-    res.render("create", { title: "Create a new blog" });
 });
 
 app.use((req, res) => {
