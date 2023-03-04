@@ -7,7 +7,7 @@ const app = express();
 
 //connect to mongodb
 const dbURI =
-    "mongodb+srv://netninja:testing1234@nodetuts.pubjlsi.mongodb.net/node-tuts?retryWrites=true&w=majority";
+    "mongodb+srv://netninja:testing1234@nodetuts.pubjlsi.mongodb.net/node-tuts";
 
 mongoose
     .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -21,26 +21,25 @@ mongoose
 app.set("view engine", "ejs");
 
 //middlewares
-app.use(express.static("./public/"));
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use((req, res, next) => {
+    res.locals.path = req.path;
+    next();
+}); 
 
 //routes
 app.get("/", (req, res) => {
     res.redirect("/blogs");
 });
 
-//blog routes
-app.use("/blogs", blogRoutes);
-
-//custom routes
 app.get("/about", (req, res) => {
     res.render("about", { title: "About" });
 });
 
-app.get("/create", (req, res) => {
-    res.render("create", { title: "Create a new blog" });
-});
+//blog routes
+app.use("/blogs", blogRoutes);
 
 app.use((req, res) => {
     res.status(404).render("404", { title: "404" });
