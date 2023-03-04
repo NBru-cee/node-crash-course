@@ -7,7 +7,7 @@ const app = express();
 
 //connect to mongodb
 const dbURI =
-    "mongodb+srv://netninja:testing1234@nodetuts.pubjlsi.mongodb.net/node-tuts";
+    "mongodb+srv://netninja:testing1234@nodetuts.pubjlsi.mongodb.net/node-tuts?retryWrites=true&w=majority";
 
 mongoose
     .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -27,7 +27,7 @@ app.use(morgan("dev"));
 app.use((req, res, next) => {
     res.locals.path = req.path;
     next();
-}); 
+});
 
 //routes
 app.get("/", (req, res) => {
